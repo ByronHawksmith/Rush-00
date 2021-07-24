@@ -1,14 +1,4 @@
-#include <unistd.h>
-
-void	ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
-
-void	ft_putarray(char arr[], int num_bytes)
-{
-	write(1, arr, num_bytes);
-}
+void	ft_putchar(char c);
 
 void	print_line(int line_len, char symbols[])
 {
