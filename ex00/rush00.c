@@ -1,28 +1,13 @@
 #include <unistd.h>
 
-int ft_strlen(char *str)
-{
-	int i;
-
-	i = 0;
-	while (str[i])
-	{
-		i++;
-	}
-	return i;
-}
-
 void    ft_putchar(char c)
 {
 	write(1, &c, 1);
 }
 
-void    ft_putarray(char arr[])
+void    ft_putarray(char arr[], int num_bytes)
 {
-	int arr_size_in_bytes;
-
-	arr_size_in_bytes = ft_strlen(arr);
-	write(1, arr, arr_size_in_bytes);
+	write(1, arr, num_bytes + 1);
 }
 
 void	print_horiz(char arr[], int size)
@@ -43,7 +28,7 @@ void	print_horiz(char arr[], int size)
 		i++;
 	}
 
-	ft_putarray(arr);
+	ft_putarray(arr, size);
 	ft_putchar('\n');
 }
 
@@ -65,7 +50,7 @@ void	print_vert(char arr[], int size)
 		i++;
 	}
 
-	ft_putarray(arr);
+	ft_putarray(arr, size);
 	ft_putchar('\n');
 }
 
@@ -81,11 +66,11 @@ void	rush(int x, int y)
 	x_arr_size = (sizeof(x_arr) / sizeof(char)) - 1;	
 	y_arr_size = (sizeof(y_arr) / sizeof(char)) - 1;	
 	
-	y = y - 1;
+	i = y - 1;
 
-	while (y >= 0)
+	while (i >= 0)
 	{
-		if (y == 0 || y == y_arr_size)
+		if (i == 0 || i == y_arr_size)
 		{
 			print_horiz(x_arr, x_arr_size);
 		}
@@ -93,6 +78,6 @@ void	rush(int x, int y)
 		{
 			print_vert(x_arr, x_arr_size);
 		}
-		y--;
+		i--;
 	}
 }
