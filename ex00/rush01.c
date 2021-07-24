@@ -1,11 +1,7 @@
 void	ft_putchar(char c);
 
-void	print_line(int line_len, int mode)
+void	determine_symbs(int mode, char *symbs)
 {
-	int	i;
-	char symbs[3];
-
-	i = 0;
 	symbs[2] = '*';
 	if (mode == 0)
 	{
@@ -17,25 +13,32 @@ void	print_line(int line_len, int mode)
 		symbs[0] = '/';
 		symbs[1] = '\\';
 	}
-	else 
+	else
 	{
 		symbs[0] = '*';
 		symbs[1] = '*';
 		symbs[2] = ' ';
 	}
+}
+
+void	print_line(int line_len, char symbs[])
+{
+	int	i;
+
+	i = 0;
 	while (i < line_len)
 	{
 		if (i == 0)
-			ft_putchar(symbs[0]);	
+			ft_putchar(symbs[0]);
 		else if (i == (line_len - 1))
-			ft_putchar(symbs[1]);	
+			ft_putchar(symbs[1]);
 		else
 			ft_putchar(symbs[2]);
 		i++;
 	}
 }
 
-void	logic(int x, int y)
+void	logic(int x, int y, char symbs[])
 {
 	int		i;
 
@@ -45,17 +48,12 @@ void	logic(int x, int y)
 	while (i >= 1)
 	{
 		if (i == 1)
-		{
-			print_line(x, 0);
-		}
+			determine_symbs(0, symbs);
 		else if (i == y)
-		{
-			print_line(x, 1);
-		}
+			determine_symbs(1, symbs);
 		else
-		{
-			print_line(x, 2);
-		}
+			determine_symbs(2, symbs);
+		print_line(x, symbs);
 		if (i != 1)
 			ft_putchar('\n');
 		i--;
@@ -64,8 +62,15 @@ void	logic(int x, int y)
 
 void	rush(int x, int y)
 {
+	char	symbs[3];
+
 	if (y == 1)
-		print_line(x, 1);	
+	{
+		determine_symbs(1, symbs);
+		print_line(x, symbs);
+	}
 	else
-		logic(x, y);
+	{
+		logic(x, y, symbs);
+	}
 }
