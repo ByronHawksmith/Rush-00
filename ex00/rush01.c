@@ -17,6 +17,23 @@ void	print_line(int line_len, char symbols[])
 	}
 }
 
+void	print_one_line(int line_len, char front, char back, char star)
+{
+	int	i;
+
+	i = 0;
+	while (i < line_len)
+	{
+		if (i == 0)
+			ft_putchar(front);	
+		else if (i == (line_len - 1))
+			ft_putchar(back);	
+		else
+			ft_putchar(star);
+		i++;
+	}
+}
+
 void	logic(int x, int y, char horiz_symb[], char vert_symb[])
 {
 	int		i;
@@ -66,5 +83,9 @@ void	rush(int x, int y)
 	horiz_symb[4] = '*';
 	vert_symb[0] = '*';
 	vert_symb[1] = ' ';
-	logic(x, y, horiz_symb, vert_symb);
+
+	if (y == 1)
+		print_one_line(x, '/', '\\', '*');		
+	else
+		logic(x, y, horiz_symb, vert_symb);
 }
