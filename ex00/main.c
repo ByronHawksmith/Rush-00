@@ -1,11 +1,11 @@
 void	ft_putchar(char c);
 
-int	rush(int x, int y);
+int		rush(int x, int y);
 
 int	main(void)
 {
 	rush(5, 5);
-	ft_putchar('\n');	
+	ft_putchar('\n');
 	rush(5, 3);
 	ft_putchar('\n');
 	rush(5, 1);
