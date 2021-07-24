@@ -16,11 +16,11 @@ void	print_line(int line_len, char symbols[])
 	int arr_size;
 	int i;
 	
-	arr_size = (sizeof(arr) / sizeof(char)) - 1;	
+	arr_size = sizeof(arr) / sizeof(char);	
 	i = 0;
-	while (i <= arr_size)
+	while (i < arr_size)
 	{
-		if (i == 0 || i == arr_size)
+		if (i == 0 || i == (arr_size - 1))
 		{
 			arr[i] = symbols[0];
 		}
@@ -31,7 +31,7 @@ void	print_line(int line_len, char symbols[])
 		i++;
 	}
 
-	ft_putarray(arr, arr_size + 1);
+	ft_putarray(arr, arr_size);
 	ft_putchar('\n');
 }
 
@@ -41,7 +41,7 @@ void	rush(int x, int y)
 	char horiz_symb[2];
 	char vert_symb[2];
 
-	i = y - 1;
+	i = y;
 	horiz_symb[0] = 'o';
 	horiz_symb[1] = '-';
 	vert_symb[0] = '|';
@@ -49,7 +49,7 @@ void	rush(int x, int y)
 
 	while (i >= 0)
 	{
-		if (i == 0 || i == (y - 1))
+		if (i == 0 || i == y)
 		{
 			print_line(x, horiz_symb);
 		}
