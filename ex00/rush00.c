@@ -1,22 +1,22 @@
 #include <unistd.h>
 
-void    ft_putchar(char c)
+void	ft_putchar(char c)
 {
 	write(1, &c, 1);
 }
 
-void    ft_putarray(char arr[], int num_bytes)
+void	ft_putarray(char arr[], int num_bytes)
 {
 	write(1, arr, num_bytes);
 }
 
 void	print_line(int line_len, char symbols[])
 {
-	char arr[line_len];
-	int arr_size;
-	int i;
-	
-	arr_size = sizeof(arr) / sizeof(char);	
+	char	arr[line_len];
+	int		arr_size;
+	int		i;
+
+	arr_size = sizeof(arr) / sizeof(char);
 	i = 0;
 	while (i < arr_size)
 	{
@@ -30,26 +30,24 @@ void	print_line(int line_len, char symbols[])
 		}
 		i++;
 	}
-
 	ft_putarray(arr, arr_size);
 	ft_putchar('\n');
 }
 
 void	rush(int x, int y)
 {
-	int i;
-	char horiz_symb[2];
-	char vert_symb[2];
+	int		i;
+	char	horiz_symb[2];
+	char	vert_symb[2];
 
 	i = y;
 	horiz_symb[0] = 'o';
 	horiz_symb[1] = '-';
 	vert_symb[0] = '|';
 	vert_symb[1] = ' ';
-
-	while (i >= 0)
+	while (i >= 1)
 	{
-		if (i == 0 || i == y)
+		if (i == 1 || i == y)
 		{
 			print_line(x, horiz_symb);
 		}
