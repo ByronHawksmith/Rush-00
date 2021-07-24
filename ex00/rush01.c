@@ -1,43 +1,43 @@
 void	ft_putchar(char c);
 
-void	print_line(int line_len, char symbols[])
+void	print_line(int line_len, int mode)
 {
 	int	i;
+	char symbs[3];
 
 	i = 0;
+	symbs[2] = '*';
+	if (mode == 0)
+	{
+		symbs[0] = '\\';
+		symbs[1] = '/';
+	}
+	else if (mode == 1)
+	{
+		symbs[0] = '/';
+		symbs[1] = '\\';
+	}
+	else 
+	{
+		symbs[0] = '*';
+		symbs[1] = '*';
+		symbs[2] = ' ';
+	}
 	while (i < line_len)
 	{
 		if (i == 0)
-			ft_putchar(symbols[0]);	
+			ft_putchar(symbs[0]);	
 		else if (i == (line_len - 1))
-			ft_putchar(symbols[2]);
+			ft_putchar(symbs[1]);	
 		else
-			ft_putchar(symbols[1]);
+			ft_putchar(symbs[2]);
 		i++;
 	}
 }
 
-void	print_one_line(int line_len, char front, char back, char star)
-{
-	int	i;
-
-	i = 0;
-	while (i < line_len)
-	{
-		if (i == 0)
-			ft_putchar(front);	
-		else if (i == (line_len - 1))
-			ft_putchar(back);	
-		else
-			ft_putchar(star);
-		i++;
-	}
-}
-
-void	logic(int x, int y, char horiz_symb[], char vert_symb[])
+void	logic(int x, int y)
 {
 	int		i;
-	char	symbols[3];
 
 	i = y;
 	if (x + y == 1)
@@ -46,24 +46,15 @@ void	logic(int x, int y, char horiz_symb[], char vert_symb[])
 	{
 		if (i == 1)
 		{
-			symbols[0] = horiz_symb[2];
-			symbols[1] = horiz_symb[4];
-			symbols[2] = horiz_symb[3];
-			print_line(x, symbols);
+			print_line(x, 0);
 		}
 		else if (i == y)
 		{
-			symbols[0] = horiz_symb[0];
-			symbols[1] = horiz_symb[4];
-			symbols[2] = horiz_symb[1];
-			print_line(x, symbols);
+			print_line(x, 1);
 		}
 		else
 		{
-			symbols[0] = vert_symb[0];
-			symbols[1] = vert_symb[1];
-			symbols[2] = vert_symb[0];
-			print_line(x, symbols);
+			print_line(x, 2);
 		}
 		if (i != 1)
 			ft_putchar('\n');
@@ -73,19 +64,8 @@ void	logic(int x, int y, char horiz_symb[], char vert_symb[])
 
 void	rush(int x, int y)
 {
-	char	horiz_symb[5];
-	char	vert_symb[2];
-
-	horiz_symb[0] = '/';
-	horiz_symb[1] = '\\';
-	horiz_symb[2] = '\\';
-	horiz_symb[3] = '/';
-	horiz_symb[4] = '*';
-	vert_symb[0] = '*';
-	vert_symb[1] = ' ';
-
 	if (y == 1)
-		print_one_line(x, '/', '\\', '*');		
+		print_line(x, 1);	
 	else
-		logic(x, y, horiz_symb, vert_symb);
+		logic(x, y);
 }
