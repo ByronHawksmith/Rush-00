@@ -27,7 +27,6 @@ void	print_line(int line_len, char symbols[])
 		}
 		i++;
 	}
-	ft_putchar('\n');
 }
 
 void	rush(int x, int y)
@@ -41,6 +40,10 @@ void	rush(int x, int y)
 	horiz_symb[1] = '-';
 	vert_symb[0] = '|';
 	vert_symb[1] = ' ';
+	if (x + y == 1)
+	{
+		return;
+	}
 	while (i >= 1)
 	{
 		if (i == 1 || i == y)
@@ -51,6 +54,8 @@ void	rush(int x, int y)
 		{
 			print_line(x, vert_symb);
 		}
+		if (i != 1)
+			ft_putchar('\n');
 		i--;
 	}
 }
