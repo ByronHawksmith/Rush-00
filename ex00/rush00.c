@@ -7,76 +7,55 @@ void    ft_putchar(char c)
 
 void    ft_putarray(char arr[], int num_bytes)
 {
-	write(1, arr, num_bytes + 1);
+	write(1, arr, num_bytes);
 }
 
-void	print_horiz(char arr[], int size)
+void	print_line(int line_len, char symbols[])
 {
+	char arr[line_len];
+	int arr_size;
 	int i;
-
+	
+	arr_size = (sizeof(arr) / sizeof(char)) - 1;	
 	i = 0;
-	while (i <= size)
+	while (i <= arr_size)
 	{
-		if (i == 0 || i == size)
+		if (i == 0 || i == arr_size)
 		{
-			arr[i] = 'o';
+			arr[i] = symbols[0];
 		}
 		else
 		{
-			arr[i] = '-';
+			arr[i] = symbols[1];
 		}
 		i++;
 	}
 
-	ft_putarray(arr, size);
-	ft_putchar('\n');
-}
-
-void	print_vert(char arr[], int size)
-{
-	int i;
-
-	i = 0;
-	while (i <= size)
-	{
-		if (i == 0 || i == size)
-		{
-			arr[i] = '|';
-		}
-		else
-		{
-			arr[i] = ' ';
-		}
-		i++;
-	}
-
-	ft_putarray(arr, size);
+	ft_putarray(arr, arr_size + 1);
 	ft_putchar('\n');
 }
 
 void	rush(int x, int y)
 {
-	char x_arr[x];
-	char y_arr[y];
 	int i;
-	int x_arr_size;
-	int y_arr_size;
+	char horiz_symb[2];
+	char vert_symb[2];
 
-	i = 0;
-	x_arr_size = (sizeof(x_arr) / sizeof(char)) - 1;	
-	y_arr_size = (sizeof(y_arr) / sizeof(char)) - 1;	
-	
 	i = y - 1;
+	horiz_symb[0] = 'o';
+	horiz_symb[1] = '-';
+	vert_symb[0] = '|';
+	vert_symb[1] = ' ';
 
 	while (i >= 0)
 	{
-		if (i == 0 || i == y_arr_size)
+		if (i == 0 || i == (y - 1))
 		{
-			print_horiz(x_arr, x_arr_size);
+			print_line(x, horiz_symb);
 		}
 		else
 		{
-			print_vert(x_arr, x_arr_size);
+			print_line(x, vert_symb);
 		}
 		i--;
 	}
