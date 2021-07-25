@@ -39,27 +39,27 @@ void	determine_chars(int mode, char *chars)
  */
 void	print_line(int line_len, char chars[])
 {
-	int	i;
+	int	current_pos;
 
-	i = 0;
-	while (i < line_len)
+	current_pos = 0;
+	while (current_pos < line_len)
 	{
-		if (i == 0)
+		if (current_pos == 0)
 			ft_putchar(chars[0]);
-		else if (i == (line_len - 1))
+		else if (current_pos == (line_len - 1))
 			ft_putchar(chars[1]);
 		else
 			ft_putchar(chars[2]);
-		i++;
+		current_pos++;
 	}
 }
 
 /*
- * Prints all rows by looping over an int
+ * Print all rows by looping over an int
  * i which is initially set to y: the
  * number of rows.
  *
- * Determines the characters to use based on
+ * Determine the characters to use based on
  * if the current row is the first, last or
  * a middle row.
  *
@@ -73,23 +73,25 @@ void	print_line(int line_len, char chars[])
  */
 void	logic(int x, int y, char chars[])
 {
-	int		i;
+	int	current_pos;
+	int	last_position;
 
-	i = y;
-	if (x + y == 1)
+	current_pos = 0;
+	last_position = y - 1;
+	if (x + y == 1 || x + y == 0)
 		return ;
-	while (i >= 1)
+	while (current_pos <= last_position)
 	{
-		if (i == y)
+		if (current_pos == 0)
 			determine_chars(0, chars);
-		else if (i == 1)
+		else if (current_pos == last_position)
 			determine_chars(1, chars);
 		else
 			determine_chars(2, chars);
 		print_line(x, chars);
-		if (i != 1)
+		if (current_pos != last_position)
 			ft_putchar('\n');
-		i--;
+		current_pos++;
 	}
 }
 
