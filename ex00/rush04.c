@@ -96,8 +96,11 @@ void	logic(int x, int y, char chars[])
 }
 
 /*
- * If we only have one row print it with the
- * first row mode. Otherwise do normal logic.
+ * Creates a char array called chars of size
+ * 3.
+ *
+ * Passes the x, y and chars variables into
+ * the logic function.
  */
 void	rush(int x, int y)
 {
