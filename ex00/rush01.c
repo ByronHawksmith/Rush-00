@@ -4,8 +4,8 @@ void	ft_putchar(char c);
  * Determine which characters to use based on
  * a given mode.
  *
- * Mode 0: last row
- * Mode 1: first row
+ * Mode 0: first row
+ * Mode 1: last row
  * Mode 2: middle row
  */
 void	determine_chars(int mode, char *chars)
@@ -13,13 +13,13 @@ void	determine_chars(int mode, char *chars)
 	chars[2] = '*';
 	if (mode == 0)
 	{
-		chars[0] = '\\';
-		chars[1] = '/';
+		chars[0] = '/';
+		chars[1] = '\\';
 	}
 	else if (mode == 1)
 	{
-		chars[0] = '/';
-		chars[1] = '\\';
+		chars[0] = '\\';
+		chars[1] = '/';
 	}
 	else
 	{
@@ -55,13 +55,13 @@ void	print_line(int line_len, char chars[])
 }
 
 /*
- * Print all rows by looping over an int
+ * Prints all rows by looping over an int
  * i which is initially set to y: the
  * number of rows.
  *
- * Determine the characters to use based on
- * if the current row is the the first, last
- * or a middle row.
+ * Determines the characters to use based on
+ * if the current row is the first, last or
+ * a middle row.
  *
  * Exceptions:
  *
@@ -80,9 +80,9 @@ void	logic(int x, int y, char chars[])
 		return ;
 	while (i >= 1)
 	{
-		if (i == 1)
+		if (i == y)
 			determine_chars(0, chars);
-		else if (i == y)
+		else if (i == 1)
 			determine_chars(1, chars);
 		else
 			determine_chars(2, chars);
@@ -94,20 +94,15 @@ void	logic(int x, int y, char chars[])
 }
 
 /*
- * If we only have one row print it with the
- * first row mode. Otherwise do normal logic.
+ * Creates a char array called chars of size
+ * 3.
+ *
+ * Passes the x, y and chars variables into
+ * the logic function.
  */
 void	rush(int x, int y)
 {
 	char	chars[3];
 
-	if (y == 1)
-	{
-		determine_chars(1, chars);
-		print_line(x, chars);
-	}
-	else
-	{
-		logic(x, y, chars);
-	}
+	logic(x, y, chars);
 }
