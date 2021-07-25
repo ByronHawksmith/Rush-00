@@ -1,27 +1,43 @@
 void	ft_putchar(char c);
 
-void	determine_symbs(int mode, char *symbs)
+/*
+ * Determine which characters to use based on
+ * a given mode.
+ *
+ * Mode 0: last row
+ * Mode 1: first row
+ * Mode 2: middle row
+ */
+void	determine_chars(int mode, char *chars)
 {
-	symbs[2] = '*';
+	chars[2] = '*';
 	if (mode == 0)
 	{
-		symbs[0] = '\\';
-		symbs[1] = '/';
+		chars[0] = '\\';
+		chars[1] = '/';
 	}
 	else if (mode == 1)
 	{
-		symbs[0] = '/';
-		symbs[1] = '\\';
+		chars[0] = '/';
+		chars[1] = '\\';
 	}
 	else
 	{
-		symbs[0] = '*';
-		symbs[1] = '*';
-		symbs[2] = ' ';
+		chars[0] = '*';
+		chars[1] = '*';
+		chars[2] = ' ';
 	}
 }
 
-void	print_line(int line_len, char symbs[])
+/*
+ * Print a given row by looping over an int
+ * row_len.
+ *
+ * Print the appropriate char based on if
+ * the character is in the last, first or
+ * middle position.
+ */
+void	print_line(int line_len, char chars[])
 {
 	int	i;
 
@@ -29,16 +45,33 @@ void	print_line(int line_len, char symbs[])
 	while (i < line_len)
 	{
 		if (i == 0)
-			ft_putchar(symbs[0]);
+			ft_putchar(chars[0]);
 		else if (i == (line_len - 1))
-			ft_putchar(symbs[1]);
+			ft_putchar(chars[1]);
 		else
-			ft_putchar(symbs[2]);
+			ft_putchar(chars[2]);
 		i++;
 	}
 }
 
-void	logic(int x, int y, char symbs[])
+/*
+ * Print all rows by looping over an int
+ * i which is initially set to y: the
+ * number of rows.
+ *
+ * Determine the characters to use based on
+ * if the current row is the the first, last
+ * or a middle row.
+ *
+ * Exceptions:
+ *
+ * If the dimensions are invalid:
+ * i.e. (0, 0), (0, 1), (1, 0), print nothing.
+ *
+ * If printing the last row, don't print a \n
+ * char.
+ */
+void	logic(int x, int y, char chars[])
 {
 	int		i;
 
@@ -48,29 +81,33 @@ void	logic(int x, int y, char symbs[])
 	while (i >= 1)
 	{
 		if (i == 1)
-			determine_symbs(0, symbs);
+			determine_chars(0, chars);
 		else if (i == y)
-			determine_symbs(1, symbs);
+			determine_chars(1, chars);
 		else
-			determine_symbs(2, symbs);
-		print_line(x, symbs);
+			determine_chars(2, chars);
+		print_line(x, chars);
 		if (i != 1)
 			ft_putchar('\n');
 		i--;
 	}
 }
 
+/*
+ * If we only have one row print it with the
+ * first row mode. Otherwise do normal logic.
+ */
 void	rush(int x, int y)
 {
-	char	symbs[3];
+	char	chars[3];
 
 	if (y == 1)
 	{
-		determine_symbs(1, symbs);
-		print_line(x, symbs);
+		determine_chars(1, chars);
+		print_line(x, chars);
 	}
 	else
 	{
-		logic(x, y, symbs);
+		logic(x, y, chars);
 	}
 }
