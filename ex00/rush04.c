@@ -31,22 +31,23 @@ void	determine_chars(int mode, char *chars)
 
 /*
  * Print a given row by looping over an int
- * row_len.
+ * current position which is initially set
+ * to 0, stop when it reaches the row length.
  *
  * Print the appropriate char based on if
- * the character is in the last, first or
+ * the character is in the first, last or
  * middle position.
  */
-void	print_line(int line_len, char chars[])
+void	print_row(int row_len, char chars[])
 {
 	int	current_pos;
 
 	current_pos = 0;
-	while (current_pos < line_len)
+	while (current_pos < row_len)
 	{
 		if (current_pos == 0)
 			ft_putchar(chars[0]);
-		else if (current_pos == (line_len - 1))
+		else if (current_pos == (row_len - 1))
 			ft_putchar(chars[1]);
 		else
 			ft_putchar(chars[2]);
@@ -56,8 +57,9 @@ void	print_line(int line_len, char chars[])
 
 /*
  * Print all rows by looping over an int
- * i which is initially set to y: the
- * number of rows.
+ * current position which is initially set
+ * to 0, stop when it reaches the last
+ * position.
  *
  * Determine the characters to use based on
  * if the current row is the first, last or
@@ -88,7 +90,7 @@ void	logic(int x, int y, char chars[])
 			determine_chars(1, chars);
 		else
 			determine_chars(2, chars);
-		print_line(x, chars);
+		print_row(x, chars);
 		if (current_pos != last_position)
 			ft_putchar('\n');
 		current_pos++;
