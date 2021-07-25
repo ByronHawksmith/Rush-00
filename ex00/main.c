@@ -22,6 +22,16 @@ int	main(void)
 	ft_putchar('\n');
 	rush(1, 0);
 	ft_putchar('\n');
+	rush(-50, -50);
+	ft_putchar('\n');
+	rush(-50, 50);
+	ft_putchar('\n');
+	rush(50, -50);
+	ft_putchar('\n');
+	rush(-50, 0);
+	ft_putchar('\n');
+	rush(0, -50);
+	ft_putchar('\n');
 	rush(123, 42);
 	return (0);
 }
